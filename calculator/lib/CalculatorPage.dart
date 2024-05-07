@@ -1,3 +1,6 @@
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:calculator/button.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -76,8 +79,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        leading: const Icon(Icons.settings, color: Colors.black), actions: const [
-          Padding(padding: EdgeInsets.only(top: 18.0),
+        leading: const Icon(Icons.settings, color: Colors.black),
+          actions: const [
+            Padding(padding: EdgeInsets.only(top: 18.0),
           child: Text('DEG', style: TextStyle(color: Colors.black)),),
           SizedBox(width:20),
         ],
@@ -89,9 +93,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
             Align(
               alignment: Alignment.bottomRight,
               child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.vertical,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -123,10 +127,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
                     const SizedBox(width: 20),
                       ],
                     ),
-                  //],
-                //),
-              //),
-            //),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -166,6 +166,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   myButton('1', Colors.white10, () => buttonPressed('1')),
                   myButton('2', Colors.white10, () => buttonPressed('2')),
                   myButton('3', Colors.white10, () => buttonPressed('3')),
+                  myButton('=', Colors.white10, () => buttonPressed('=')),
                 ],
               ),
               const SizedBox(height: 10),
@@ -182,7 +183,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
           ],
          ),
       ),
-      myButton('=', Colors.black, () => buttonPressed('=')),
     )
   ],
         ),

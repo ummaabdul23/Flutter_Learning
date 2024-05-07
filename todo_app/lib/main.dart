@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           title: Text("My ToDo list app"),
           backgroundColor: Colors.purpleAccent,
           elevation: 0,
-          leading: Icon(Icons.abc),
+          leading: Icon(Icons.menu),
           actions: [
             IconButton(
               onPressed: () {},
@@ -40,10 +40,10 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
                 fontSize: 48,
               ),
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
