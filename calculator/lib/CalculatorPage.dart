@@ -183,6 +183,10 @@ class _CalculatorPageState extends State<CalculatorPage> {
           ],
          ),
       ),
+<<<<<<< HEAD
+=======
+      myButton('=', Colors.white10, () => buttonPressed('='))
+>>>>>>> ce0cfed5257809fd7faff2fb43971a7ed172bf44
     )
   ],
         ),
