@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 
+import 'products.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -8,7 +8,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,74 +17,130 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.grey,
           leading: IconButton(
             icon: const Icon(Icons.menu),
-            onPressed: () {
-              // Add your notification icon onPressed functionality here
-            },
+            onPressed: () {},
           ),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.notifications),
-              onPressed: () {
-                // Add your menu onPressed functionality here
-              },
+              onPressed: () {},
             ),
           ],
-          title: Column(
+          title: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  Image.asset(
-                    'assets/logo.jpg', // Replace 'assets/logo.png' with your logo asset path
-                    height: 30, // Adjust the height as needed
-                  ),
-                  const SizedBox(width: 10), // Add spacing between the logo and the search bar
-                ],
+              Image.asset(
+                'lib/assets/logo.jpg',
+                height: 50,
               ),
-              const SizedBox(height: 8), // Add spacing between the logo row and the search bar
-              Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.grey, // Set the background color of the container
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 40,
-                        margin: const EdgeInsets.symmetric(vertical: 10),
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            const Expanded(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'Search...',
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.camera_alt),
-                              onPressed: () {
-                                // Action to perform when camera icon is pressed
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const SizedBox(width: 10),
             ],
           ),
           centerTitle: true,
         ),
-        body: const Center(
-          child: Text('Your App Content Here'),
+        body: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.grey,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () {},
+                          ),
+                          const Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Search...',
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.camera_alt),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Number of items per row
+                    crossAxisSpacing: 8.0, // Spacing between items in a row
+                    mainAxisSpacing: 8.0, // Spacing between rows
+                    childAspectRatio: 0.75, // Aspect ratio of each item
+                  ),
+                  itemCount: products.length, // Total number of items
+                  itemBuilder: (context, index) {
+                    final item = products[index];
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(10),
+                              ),
+                              child: Image.asset(
+                                item.imageUrl,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item.name,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  '\$${item.price}',
+                                  style: const TextStyle(
+                                    color: Colors.green,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomAppBar(
           color: Colors.grey,
@@ -126,6 +181,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      );
+    );
   }
 }
